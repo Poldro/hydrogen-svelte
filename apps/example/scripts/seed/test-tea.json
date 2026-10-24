@@ -1,0 +1,35 @@
+{
+  "identifier": {
+    "handle": "test-tea"
+  },
+  "input": {
+    "handle": "test-tea",
+    "title": "Test Tea",
+    "status": "ACTIVE",
+    "vendor": "hydrogen-svelte test",
+    "productOptions": [
+      {
+        "name": "Title",
+        "values": [
+          {
+            "name": "Default Title"
+          }
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "optionValues": [
+          {
+            "optionName": "Title",
+            "name": "Default Title"
+          }
+        ],
+        "price": "7.50",
+        "inventoryItem": {
+          "tracked": false
+        }
+      }
+    ]
+  }
+}

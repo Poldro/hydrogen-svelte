@@ -1,0 +1,20 @@
+# Creates or updates a test product (matched by handle) with untracked inventory.
+mutation SeedProduct($identifier: ProductSetIdentifiers, $input: ProductSetInput!) {
+  productSet(identifier: $identifier, input: $input, synchronous: true) {
+    product {
+      id
+      handle
+      variants(first: 10) {
+        nodes {
+          id
+          title
+        }
+      }
+    }
+    userErrors {
+      field
+      message
+      code
+    }
+  }
+}
