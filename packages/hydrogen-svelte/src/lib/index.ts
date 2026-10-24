@@ -13,3 +13,16 @@ export { quantityInput } from './cart/attachments.js';
 export type { ReactiveValue } from './internal/from-store.js';
 export { default as ShopifyScripts } from './shopify-scripts/ShopifyScripts.svelte';
 export type { ShopifyScriptsProps } from './shopify-scripts/ShopifyScripts.svelte';
+
+export { createProductComponents, useProductForm } from './product/product.svelte.js';
+export type {
+	OnProductSelect,
+	ProductComponents,
+	ProductFormRegister,
+	ProductOptionValueProps,
+	UseProductFormOptions,
+	UseProductFormResult,
+	UseProductResult,
+	ValidProductSelectionResult
+} from './product/product.svelte.js';
+export type { ProductProviderProps } from './product/ProductProvider.svelte';
