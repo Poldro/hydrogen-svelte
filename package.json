@@ -1,0 +1,16 @@
+{
+	"name": "hydrogen-svelte-monorepo",
+	"private": true,
+	"type": "module",
+	"packageManager": "pnpm@9.9.0",
+	"engines": {
+		"node": ">=22"
+	},
+	"scripts": {
+		"build": "pnpm -r build",
+		"check": "pnpm -r check",
+		"test": "pnpm --filter hydrogen-svelte test",
+		"test:e2e": "pnpm --filter example test:e2e",
+		"dev": "pnpm --filter example dev"
+	}
+}

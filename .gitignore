@@ -1,0 +1,26 @@
+node_modules
+
+# Output
+/packages/*/dist
+/apps/*/build
+.svelte-kit
+coverage
+test-results
+playwright-report
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Agent skills installed by `npx @shopify/hydrogen setup`; regenerate them with that command.
+/apps/example/.claude
+/apps/example/.agents
+
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# OS
+.DS_Store
+Thumbs.db

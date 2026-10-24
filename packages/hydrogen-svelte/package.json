@@ -1,0 +1,72 @@
+{
+	"name": "hydrogen-svelte",
+	"version": "0.0.0",
+	"description": "Unofficial Svelte 5 bindings for Shopify Hydrogen (2026.10 framework-agnostic toolkit).",
+	"license": "MIT",
+	"author": "Paolo Valmori",
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/Poldro/hydrogen-svelte.git",
+		"directory": "packages/hydrogen-svelte"
+	},
+	"homepage": "https://github.com/Poldro/hydrogen-svelte#readme",
+	"bugs": "https://github.com/Poldro/hydrogen-svelte/issues",
+	"type": "module",
+	"keywords": [
+		"svelte",
+		"sveltekit",
+		"shopify",
+		"hydrogen",
+		"storefront"
+	],
+	"scripts": {
+		"dev": "vite dev",
+		"build": "svelte-kit sync && svelte-package && publint",
+		"prepack": "pnpm build",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"test:unit": "vitest",
+		"test": "vitest --run",
+		"test:coverage": "vitest --run --coverage"
+	},
+	"files": [
+		"dist",
+		"!dist/**/*.test.*",
+		"!dist/**/*.spec.*",
+		"!dist/test-utils"
+	],
+	"sideEffects": false,
+	"svelte": "./dist/index.js",
+	"types": "./dist/index.d.ts",
+	"exports": {
+		".": {
+			"types": "./dist/index.d.ts",
+			"svelte": "./dist/index.js",
+			"default": "./dist/index.js"
+		},
+		"./package.json": "./package.json"
+	},
+	"dependencies": {
+		"@shopify/hydrogen": "~2026.10.2"
+	},
+	"peerDependencies": {
+		"svelte": "^5.29.0"
+	},
+	"devDependencies": {
+		"@sveltejs/adapter-auto": "^7.0.1",
+		"@sveltejs/kit": "^2.70.3",
+		"@sveltejs/package": "^2.5.8",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@vitest/browser-playwright": "^4.1.8",
+		"@vitest/coverage-v8": "^4.1.8",
+		"playwright": "^1.60.0",
+		"publint": "^0.3.21",
+		"svelte": "^5.57.1",
+		"svelte-check": "^4.6.0",
+		"typescript": "^6.0.3",
+		"vite": "^8.3.0",
+		"vitest": "^4.1.8",
+		"vitest-browser-svelte": "^2.1.1"
+	}
+}
