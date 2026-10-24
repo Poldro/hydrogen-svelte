@@ -11,3 +11,5 @@ export type {
 export type { CartProviderProps } from './cart/CartProvider.svelte';
 export { quantityInput } from './cart/attachments.js';
 export type { ReactiveValue } from './internal/from-store.js';
+export { default as ShopifyScripts } from './shopify-scripts/ShopifyScripts.svelte';
+export type { ShopifyScriptsProps } from './shopify-scripts/ShopifyScripts.svelte';
