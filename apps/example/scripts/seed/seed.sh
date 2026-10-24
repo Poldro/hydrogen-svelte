@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Creates (or updates, by handle) the test products and publishes them to a Headless channel.
+# Creates (or updates, by handle) the test products, creates the test collection when it is missing,
+# and publishes them all to a Headless channel.
 #
 # Prerequisite, once per store (opens a browser to grant the scopes):
 #   npx @shopify/cli@4.9.4 store auth --store <store>.myshopify.com \
@@ -41,3 +42,17 @@ for variables in "$DIR"/test-*.json; do
 		-v "{\"id\":\"$product_id\",\"publicationId\":\"$publication_id\"}" >/dev/null
 	echo "$(json_get productSet.product.handle <<<"$result") -> $product_id"
 done
+
+# An automated collection of every test product (matched by vendor), for the filter and sort example.
+create_collection() {
+	local result errors
+	result=$("${SHOPIFY[@]}" --allow-mutations --query-file "$DIR/collection-create.graphql" --variable-file "$DIR/collection.json")
+	errors=$(json_get collectionCreate.userErrors <<<"$result")
+	[[ "$errors" == "[]" ]] || { echo "collection.json: $errors" >&2; exit 1; }
+	json_get collectionCreate.collection.id <<<"$result"
+}
+collection_id=$("${SHOPIFY[@]}" --query-file "$DIR/collection-find.graphql" -v '{"query":"handle:test-catalog"}' \
+	| json_get collections.nodes.0.id) || collection_id=$(create_collection)
+"${SHOPIFY[@]}" --allow-mutations --query-file "$DIR/publish.graphql" \
+	-v "{\"id\":\"$collection_id\",\"publicationId\":\"$publication_id\"}" >/dev/null
+echo "test-catalog -> $collection_id"

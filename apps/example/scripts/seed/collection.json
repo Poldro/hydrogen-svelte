@@ -1,0 +1,11 @@
+{
+  "input": {
+    "handle": "test-catalog",
+    "title": "Test catalog",
+    "descriptionHtml": "<p>Every hydrogen-svelte test product.</p>",
+    "ruleSet": {
+      "appliedDisjunctively": false,
+      "rules": [{ "column": "VENDOR", "relation": "EQUALS", "condition": "hydrogen-svelte test" }]
+    }
+  }
+}
