@@ -1,0 +1,8 @@
+mutation PublishProduct($id: ID!, $publicationId: ID!) {
+  publishablePublish(id: $id, input: [{ publicationId: $publicationId }]) {
+    userErrors {
+      field
+      message
+    }
+  }
+}

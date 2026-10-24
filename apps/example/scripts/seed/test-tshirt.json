@@ -1,0 +1,65 @@
+{
+  "identifier": {
+    "handle": "test-tshirt"
+  },
+  "input": {
+    "handle": "test-tshirt",
+    "title": "Test T-shirt",
+    "status": "ACTIVE",
+    "vendor": "hydrogen-svelte test",
+    "productOptions": [
+      {
+        "name": "Size",
+        "values": [
+          {
+            "name": "S"
+          },
+          {
+            "name": "M"
+          },
+          {
+            "name": "L"
+          }
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "optionValues": [
+          {
+            "optionName": "Size",
+            "name": "S"
+          }
+        ],
+        "price": "19.00",
+        "inventoryItem": {
+          "tracked": false
+        }
+      },
+      {
+        "optionValues": [
+          {
+            "optionName": "Size",
+            "name": "M"
+          }
+        ],
+        "price": "19.00",
+        "inventoryItem": {
+          "tracked": false
+        }
+      },
+      {
+        "optionValues": [
+          {
+            "optionName": "Size",
+            "name": "L"
+          }
+        ],
+        "price": "19.00",
+        "inventoryItem": {
+          "tracked": false
+        }
+      }
+    ]
+  }
+}
