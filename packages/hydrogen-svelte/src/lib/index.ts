@@ -26,3 +26,19 @@ export type {
 	ValidProductSelectionResult
 } from './product/product.svelte.js';
 export type { ProductProviderProps } from './product/ProductProvider.svelte';
+
+export {
+	CollectionProvider,
+	useCollection,
+	useCollectionActions,
+	useCollectionForm
+} from './collection/collection.svelte.js';
+export type {
+	CollectionActions,
+	CollectionData,
+	CollectionFormProps,
+	CollectionFormPropsOptions,
+	CollectionState,
+	UseCollectionFormResult
+} from './collection/collection.svelte.js';
+export type { CollectionProviderProps } from './collection/CollectionProvider.svelte';

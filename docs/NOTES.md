@@ -242,6 +242,20 @@ default action `/api/cart` · custom endpoint flows to transport and `action`.
 3. `formProps()` attaches the submit handler through an attachment key instead of an `onSubmit` prop.
 4. Extra: `quantityInput` attachment (Vue leaves `attachQuantityInput` to the user).
 5. Lazy subscription (only while read reactively) vs Vue's eager subscription.
+6. Product: `register('optionValue')` returns lowercase `onchange`/`onclick`, because Svelte
+   matches spread event props by exact name.
+7. Product: `pending` is a `ReactiveValue<boolean>` (`.current`) instead of a `ShallowRef`.
+8. Product: one module-level context key instead of a key per `createProductComponents()` call.
+   Two factories in one tree share the nearest provider.
+9. Product: rejected submissions aren't logged, because Hydrogen's logger isn't exported. Errors
+   still land in `errors` through the cart store.
+10. Collection: the provider takes an `onChange(searchString)` callback prop instead of emitting
+    `change`.
+11. Collection: `useCollectionForm().formProps()` returns an attachment, like the cart form,
+    instead of an `onSubmit` prop.
+12. Collection: the provider reconciles once during initialisation, then in `$effect.pre`. Vue's
+    `flush: 'sync'` watcher has no Svelte equivalent, so a URL change and a handle change are
+    handled in one pass: reset the store first, then reconcile.
 
 ---
 
@@ -295,3 +309,14 @@ default action `/api/cart` · custom endpoint flows to transport and `action`.
   navigation right after the click aborts the request, so tests wait for the `/api/cart` response.
   An aborted `GET /api/cart` surfaces as a logged `AbortError` 500 on the server. That is harmless
   (the client is gone), but noisy.
+
+## 10. Findings from phase 4
+
+- **Collection pagination is app-level.** The core keeps unrelated URL params when it builds the
+  next search string, so a cursor (`after`/`before`) would survive a filter change and point into
+  the old result list. The example drops the cursor params in `onChange`. That makes the URL that
+  arrives differ from the reconciler's pending target, so the reconciler treats it as external
+  navigation and settles from it. This only happens when a cursor was present.
+- **No-JS collection form.** A plain `method="get"` form with `filter.*` and `sort_by` fields
+  works unchanged, because the loader parses the same params with `parseCollectionParams`.
+  Empty price inputs are ignored by the parser.

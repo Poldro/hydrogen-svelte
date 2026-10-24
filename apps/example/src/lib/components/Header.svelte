@@ -9,6 +9,7 @@
 <header>
 	<a href="/" class="brand">hydrogen-svelte</a>
 	<nav>
+		<a href="/collections/test-catalog">Catalog</a>
 		<a href="/cart" data-testid="cart-link">
 			Cart
 			{#if count.current !== undefined}
