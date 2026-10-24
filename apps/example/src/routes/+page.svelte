@@ -28,7 +28,7 @@
 						loading="lazy"
 					/>
 				{/if}
-				<h2>{product.title}</h2>
+				<h2><a href="/products/{product.handle}">{product.title}</a></h2>
 				<p>{formatMoney(product.variant.price)}</p>
 				<AddToCart
 					merchandiseId={product.variant.id}
