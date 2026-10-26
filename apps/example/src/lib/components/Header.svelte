@@ -1,5 +1,8 @@
 <script lang="ts">
+	import { PredictiveSearchProvider } from 'hydrogen-svelte';
+
 	import { useOptionalCart } from '$lib/cart';
+	import SearchBox from './SearchBox.svelte';
 
 	// Optional: the header also renders on error pages, where the provider may be missing.
 	const count = useOptionalCart((s) => s.data.totalQuantity);
@@ -8,6 +11,9 @@
 
 <header>
 	<a href="/" class="brand">hydrogen-svelte</a>
+	<PredictiveSearchProvider limit={5} types={['PRODUCT']}>
+		<SearchBox />
+	</PredictiveSearchProvider>
 	<nav>
 		<a href="/collections/test-catalog">Catalog</a>
 		<a href="/cart" data-testid="cart-link">

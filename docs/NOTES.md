@@ -256,6 +256,11 @@ default action `/api/cart` · custom endpoint flows to transport and `action`.
 12. Collection: the provider reconciles once during initialisation, then in `$effect.pre`. Vue's
     `flush: 'sync'` watcher has no Svelte equivalent, so a URL change and a handle change are
     handled in one pass: reset the store first, then reconcile.
+13. Predictive search: `register('query')` returns the lowercase HTML attribute names
+    (`autocomplete`, `autocapitalize`, `spellcheck="false"`) and an `oninput` handler. Svelte
+    spreads props as written, so the core's camelCase names would render as unknown attributes.
+14. Predictive search: `formProps()` returns the form attributes plus a submit attachment instead
+    of an `onSubmit` prop. Its options keep Vue's `onSubmit(event, term)` and `preventDefault`.
 
 ---
 
@@ -320,3 +325,10 @@ default action `/api/cart` · custom endpoint flows to transport and `action`.
 - **No-JS collection form.** A plain `method="get"` form with `filter.*` and `sort_by` fields
   works unchanged, because the loader parses the same params with `parseCollectionParams`.
   Empty price inputs are ignored by the parser.
+- **Predictive search without JavaScript.** The search form is a native `GET /search?q=` form.
+  Hydrogen has no results-page helper beyond `getSearchResultUrl`, so the example's `/search`
+  loader reuses `queryPredictiveSearch`. A production store would run the Storefront API `search`
+  query with pagination there.
+- **The upstream SvelteKit example has no predictive search**, so the example's combobox follows
+  `examples/core/notes/predictive-search.md` (listbox roles, a polite live region,
+  `search-modal-empty`, `clear()` on close).
