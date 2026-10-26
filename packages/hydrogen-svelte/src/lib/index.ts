@@ -42,3 +42,21 @@ export type {
 	UseCollectionFormResult
 } from './collection/collection.svelte.js';
 export type { CollectionProviderProps } from './collection/CollectionProvider.svelte';
+
+export {
+	PredictiveSearchProvider,
+	usePredictiveSearch,
+	usePredictiveSearchActions,
+	usePredictiveSearchForm
+} from './predictive-search/predictive-search.svelte.js';
+export type {
+	PredictiveSearchActions,
+	PredictiveSearchData,
+	PredictiveSearchFormProps,
+	PredictiveSearchFormPropsOptions,
+	PredictiveSearchFormResult,
+	PredictiveSearchQueryInputProps,
+	PredictiveSearchQueryInputPropsOptions,
+	PredictiveSearchState
+} from './predictive-search/predictive-search.svelte.js';
+export type { PredictiveSearchProviderProps } from './predictive-search/PredictiveSearchProvider.svelte';
