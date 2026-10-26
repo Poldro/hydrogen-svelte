@@ -4,6 +4,7 @@ import type { Handle } from '@sveltejs/kit';
 
 import { routeTemplates } from '$lib/route-templates';
 import { cartHandlers } from '$lib/server/cart-handlers';
+import { predictiveSearchHandlers } from '$lib/server/predictive-search-handlers';
 import { createRequestStorefront, getBuyerIp } from '$lib/server/storefront';
 
 export const handle: Handle = async ({ event, resolve }) => {
@@ -13,13 +14,13 @@ export const handle: Handle = async ({ event, resolve }) => {
 		getBuyerIp(event.request, safeClientAddress(event))
 	);
 
-	// Shopify routes (`/api/cart`, permalinks, proxies) run before the SvelteKit router.
+	// Shopify routes (`/api/cart`, `/api/predictive-search`, permalinks, proxies) run before the SvelteKit router.
 	const shopifyRoute = handleShopifyRoutes({
 		request: event.request,
 		requestContext,
 		storefrontClient,
 		routeTemplates,
-		handlers: [cartHandlers]
+		handlers: [cartHandlers, predictiveSearchHandlers]
 	});
 	if (shopifyRoute) return shopifyRoute;
 
